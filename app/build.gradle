@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 32
+    defaultConfig {
+        applicationId "com.hindbyte.velocity"
+        minSdkVersion 16
+        targetSdkVersion 32
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        debug {
+            zipAlignEnabled true
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            zipAlignEnabled true
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 11
+        sourceCompatibility 11
+    }
+}
+
+dependencies {
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation "androidx.webkit:webkit:1.4.0"
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
+    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+}
+
+repositories {
+    mavenCentral()
+}

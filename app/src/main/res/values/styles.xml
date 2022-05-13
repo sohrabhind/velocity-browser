@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BrowserActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColorHighlight">@color/color_button</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="windowNoTitle">true</item>
+        <item name="fontFamily">@font/futuraopti</item>
+    </style>
+
+    <style name="SettingActivityTheme" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColorHighlight">@color/color_button</item>"
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="actionBarSize">@dimen/main_inputbox_height</item>
+        <item name="fontFamily">@font/futuraopti</item>
+    </style>
+</resources>

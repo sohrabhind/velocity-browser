@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/web_settings">
+
+        <ListPreference
+            android:key="@string/sp_search_engine"
+            android:defaultValue="0"
+            android:title="@string/search_engine"
+            android:summary="@string/search_engine_google"
+            android:entries="@array/entries_search_engine"
+            android:entryValues="@array/values_search_engine">
+        </ListPreference>
+
+        <SwitchPreference
+            android:key="@string/sp_images"
+            android:defaultValue="true"
+            android:title="@string/setting_title_images"
+            android:summary="@string/setting_summary_images">
+        </SwitchPreference>
+
+        <SwitchPreference
+            android:key="@string/sp_javascript"
+            android:defaultValue="true"
+            android:title="@string/setting_title_javascript"
+            android:summary="@string/setting_summary_javascript">
+        </SwitchPreference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/setting_title_data">
+
+        <SwitchPreference
+            android:key="@string/sp_clear_data_exit"
+            android:defaultValue="false"
+            android:title="@string/clear_data_exit"
+            android:summary="Clear all saved data on Exit">
+        </SwitchPreference>
+
+        <Preference
+            android:title="@string/clear_data"
+            android:summary="Clear Saved Data (Cache, Cookies and Passwords)">
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/setting_title_others">
+
+        <Preference
+            android:title="@string/setting_title_rate"
+            android:summary="Rate and Update Browser"/>
+
+        <Preference
+            android:key="@string/setting_title_version"
+            android:title="@string/setting_title_version">
+        </Preference>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

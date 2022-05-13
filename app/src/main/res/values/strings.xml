@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Velocity</string>
+
+    <string name="dialog_button_positive">OK</string>
+    <string name="dialog_button_negative">Cancel</string>
+    <string name="dialog_title_download">Do you want to download the file?</string>
+    <string name="dialog_title_resubmission">Resubmit</string>
+    <string name="toast_clear">Do You Want To Delete All Caches, Cookies and Passwords ?</string>
+    <string name="dialog_content_resubmission">Would you like to resubmit your data?</string>
+
+    <string name="text_search_action">Velocity Search</string>
+
+    <string name="add_tab">New Tab</string>
+    <string name="main_menu_new_tab">Open in New Tab</string>
+    <string name="main_menu_new_back">Open in Background</string>
+    <string name="main_menu_copy_link">Copy Link</string>
+    <string name="main_menu_copy_image_link">Copy Image Link</string>
+    <string name="main_menu_save">Save Image</string>
+
+    <string name="main_omnibox_input_hint">SEARCH</string>
+    <string name="search_hint">Find in Page</string>
+
+    <string name="setting_label">Settings</string>
+    <string name="web_settings">GENERAL SETTINGS</string>
+    <string name="setting_title_data">PRIVACY</string>
+    <string name="setting_title_others">OTHERS</string>
+
+    <string name="search_engine">Search Engine</string>
+    <string name="search_engine_google">Google</string>
+    <string name="search_engine_duckduckgo">DuckDuckGo</string>
+    <string name="search_engine_yandex">Yandex</string>
+    <string name="search_engine_bing">Bing</string>
+    <string name="search_engine_yahoo">Yahoo</string>
+
+    <string name="setting_title_images">Images</string>
+    <string name="setting_summary_images">Enable images</string>
+
+    <string name="setting_title_javascript">JavaScript</string>
+    <string name="setting_summary_javascript">Enable JavaScript</string>
+
+    <string name="clear_data_exit">Clear Data on Exit</string>
+
+    <string name="clear_data">Clear Data</string>
+
+    <string name="setting_title_version">Version</string>
+    <string name="setting_title_rate">Rate and Update</string>
+
+    <string name="banner_test_ad">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_home_ad">ca-app-pub-8834817114028090/8953078638</string>
+
+    <string name="toast_emoji">Velocity Browser</string>
+    <string name="history">HISTORY</string>
+    <string name="clear_history">CLEAR HISTORY</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="title">Title</string>
+    <string name="url">URL</string>
+</resources>

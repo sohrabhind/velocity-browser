@@ -1,0 +1,55 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_inputbox"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/edittext_main"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_inputbox_height"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:background="@color/color_background">
+
+        <AutoCompleteTextView
+            android:id="@+id/main_inputbox_input"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/color_background"
+            android:hint="@string/main_omnibox_input_hint"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/main_inputbox_text_size"
+            android:textColor="@color/color_edit_text"
+            android:textColorHint="@color/status_bar"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="text"
+            android:layout_marginLeft="@dimen/main_inputbox_marginLR"
+            android:layout_marginRight="@dimen/main_inputbox_marginLR">
+        </AutoCompleteTextView>
+
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="@dimen/inputbox_image_height"
+            android:layout_height="@dimen/inputbox_image_height"
+            android:padding="@dimen/inputbox_image_padding"
+            app:srcCompat="@drawable/ic_search_white"
+            android:background="@drawable/item_background"
+            android:contentDescription="@null">
+        </ImageView>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittext_main"
+        android:scrollbars="none"/>
+
+</RelativeLayout>

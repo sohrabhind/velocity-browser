@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+
+    <color name="progress_background">#77c1ff</color>
+    <color name="textColor">#4d4d4d</color>
+    <color name="status_bar">#9d9c9c</color>
+    <color name="color_edit_text">#212121</color>
+
+    <color name="color_button">#c7c7c7</color>
+    <color name="color_background">#f5f5f5</color>
+    <color name="colorBack">#f5f5f5</color>
+
+
+</resources>

@@ -1,0 +1,54 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/history_item"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/tab_close_image_size"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:foreground="@drawable/item_background"
+        tools:ignore="UnusedAttribute">
+
+        <TextView
+            android:id="@+id/icon_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_title_hight"
+            android:paddingLeft="@dimen/tab_title_start_padding"
+            android:paddingRight="@dimen/tab_title_start_padding"
+            android:paddingTop="@dimen/tab_title_top_padding"
+            android:textSize="@dimen/tab_title_text_size"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:ellipsize="none"/>
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_url_height"
+            android:gravity="center|start"
+            android:paddingLeft="@dimen/tab_title_start_padding"
+            android:paddingRight="@dimen/tab_title_start_padding"
+            android:paddingBottom="@dimen/tab_url_bottom_padding"
+            android:textSize="@dimen/tab_url_text_size"
+            android:singleLine="true"
+            android:ellipsize="none"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/delete_history_item"
+        android:layout_width="@dimen/tab_close_image_size"
+        android:layout_height="@dimen/tab_close_image_size"
+        android:padding="@dimen/tab_close_image_padding"
+        app:srcCompat="@drawable/ic_delete_black_24dp"
+        android:foreground="@drawable/item_background"
+        android:contentDescription="@null" />
+
+</LinearLayout>

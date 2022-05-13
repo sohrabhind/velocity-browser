@@ -1,0 +1,233 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:id="@+id/main_view"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/main_inputbox"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/main_inputbox_height"
+                android:background="@color/color_background">
+
+
+                <com.hindbyte.velocity.util.AnimatedProgressBar
+                    android:id="@+id/main_progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/prog_bar_height"
+                    android:indeterminate="false"
+                    android:indeterminateOnly="false"
+                    android:progressDrawable="@drawable/progress_bar"
+                    android:layout_alignParentBottom="true"
+                    android:importantForAccessibility="yes" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_alignParentTop="true"
+                    android:baselineAligned="false">
+
+                    <TextView
+                        android:id="@+id/main_inputbox_input"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:hint="@string/main_omnibox_input_hint"
+                        android:textSize="@dimen/main_inputbox_text_size"
+                        android:textColor="@color/color_edit_text"
+                        android:textColorHint="@color/status_bar"
+                        android:singleLine="true"
+                        android:paddingLeft="@dimen/main_inputbox_marginLR"
+                        android:paddingRight="@dimen/main_inputbox_marginLR">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tabMenu"
+                        android:layout_width="@dimen/inputbox_image_height"
+                        android:layout_height="@dimen/inputbox_image_height"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/tab_count_text_size"
+                        android:padding="@dimen/inputbox_image_padding"
+                        android:background="@drawable/ic_tab_icon"
+                        android:foreground="@drawable/item_background"
+                        tools:ignore="UnusedAttribute">
+                    </TextView>
+
+                    <ImageView
+                        android:id="@+id/more"
+                        android:layout_width="@dimen/inputbox_image_height"
+                        android:layout_height="@dimen/inputbox_image_height"
+                        android:padding="@dimen/inputbox_image_padding"
+                        app:srcCompat="@drawable/ic_menu_white"
+                        android:background="@drawable/item_background"
+                        android:contentDescription="@null"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_findInPage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/main_inputbox_height"
+                android:background="@color/colorBack"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/inputbox_findInPage"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="@string/search_hint"
+                    android:background="@color/color_background"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/main_inputbox_text_size"
+                    android:textColor="@color/color_edit_text"
+                    android:textColorHint="@color/status_bar"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/main_inputbox_marginLR"
+                    android:layout_marginRight="@dimen/main_inputbox_marginLR"
+                    android:importantForAutofill="no">
+                </EditText>
+
+                <ImageView
+                    android:id="@+id/cancel_findInPage"
+                    android:contentDescription="@null"
+                    android:layout_width="@dimen/inputbox_image_height"
+                    android:layout_height="@dimen/inputbox_image_height"
+                    android:padding="@dimen/inputbox_image_padding"
+                    app:srcCompat="@drawable/ic_cancel_white"
+                    android:background="@drawable/item_background">
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/pre_findInPage"
+                    android:contentDescription="@null"
+                    android:layout_width="@dimen/inputbox_image_height"
+                    android:layout_height="@dimen/inputbox_image_height"
+                    android:padding="@dimen/inputbox_image_padding"
+                    app:srcCompat="@drawable/ic_up_white"
+                    android:background="@drawable/item_background">
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/next_findInPage"
+                    android:contentDescription="@null"
+                    android:layout_width="@dimen/inputbox_image_height"
+                    android:layout_height="@dimen/inputbox_image_height"
+                    android:padding="@dimen/inputbox_image_padding"
+                    app:srcCompat="@drawable/ic_down_white"
+                    android:background="@drawable/item_background">
+                </ImageView>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/main_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:background="@color/white">
+            </FrameLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:focusableInTouchMode="true">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvNumbers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/home_top_padding"
+                        android:layout_marginBottom="@dimen/home_top_padding"/>
+
+                    <com.google.android.gms.ads.AdView
+                        xmlns:ads="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/adView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        ads:adUnitId="@string/banner_test_ad"
+                        ads:adSize="LARGE_BANNER"
+                        android:visibility="invisible"
+                        android:layout_marginTop="@dimen/home_top_padding"
+                        android:layout_marginBottom="@dimen/home_top_padding"
+                        android:layout_gravity="center"
+                        android:tag="@string/banner_home_ad">
+                    </com.google.android.gms.ads.AdView>
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+
+            <Button
+                android:id="@+id/add_tab"
+                android:text="@string/add_tab"
+                android:layout_width="@dimen/add_tab_width"
+                android:layout_height="@dimen/main_inputbox_height"
+                android:layout_margin="@dimen/tab_frame_padding2x"
+                android:paddingStart="@dimen/popup_top_padding"
+                android:paddingEnd="@dimen/popup_top_padding"
+                android:textSize="@dimen/menu_button_text_size"
+                android:layout_gravity="end"
+                android:textAllCaps="true"
+                android:background="@color/color_background"
+                android:foreground="@drawable/item_background"
+                tools:ignore="UnusedAttribute">
+            </Button>
+
+            <ScrollView
+                android:id="@+id/switcher_scroller"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/tab_frame_padding2x">
+
+                <LinearLayout
+                    android:id="@+id/switcher_container"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/tab_frame_padding">
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,39 @@
+<resources>
+    <dimen name="dimen_menu">24dp</dimen>
+    <dimen name="menu_button_text_size">26sp</dimen>
+    <dimen name="menu_item_padding">16dp</dimen>
+
+    <dimen name="add_tab_width">180dp</dimen>
+    <dimen name="popup_top_padding">35dp</dimen>
+    <dimen name="popup_btw_padding">20dp</dimen>
+
+    <dimen name="splash_icon_height">200dp</dimen>
+    <dimen name="home_icon_height">120dp</dimen>
+    <dimen name="home_button_text_size">20sp</dimen>
+    <dimen name="home_top_padding">20dp</dimen>
+    <dimen name="home_item_text_size">50sp</dimen>
+
+    <dimen name="tab_count_text_size">14sp</dimen>
+    <dimen name="tab_frame_padding">10dp</dimen>
+    <dimen name="tab_title_hight">60dp</dimen>
+    <dimen name="tab_url_height">50dp</dimen>
+    <dimen name="tab_close_image_size">110dp</dimen>
+    <dimen name="tab_close_image_padding">30dp</dimen>
+    <dimen name="tab_title_text_size">28sp</dimen>
+    <dimen name="tab_url_text_size">22sp</dimen>
+    <dimen name="tab_title_start_padding">18dp</dimen>
+    <dimen name="tab_title_top_padding">22dp</dimen>
+    <dimen name="tab_url_start_padding">30dp</dimen>
+    <dimen name="tab_url_bottom_padding">22dp</dimen>
+
+    <dimen name="dialog_item_text_size">28sp</dimen>
+
+    <dimen name="main_inputbox_height">90dp</dimen>
+    <dimen name="main_inputbox_text_size">25sp</dimen>
+    <dimen name="main_inputbox_marginLR">20dp</dimen>
+    <dimen name="inputbox_image_height">90dp</dimen>
+    <dimen name="inputbox_image_padding">25dp</dimen>
+    <dimen name="tab_frame_padding2x">20dp</dimen>
+    <dimen name="prog_bar_height">4dp</dimen>
+
+</resources>

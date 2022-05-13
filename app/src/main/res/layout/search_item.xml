@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="55dp"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    tools:ignore="UseCompoundDrawables">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/main_inputbox_height"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/main_inputbox_marginLR"
+        android:paddingRight="@dimen/main_inputbox_marginLR"
+        android:textSize="@dimen/main_inputbox_text_size"
+        android:textColor="@color/textColor"
+        android:maxLines="1"
+        android:foreground="@drawable/item_background"
+        android:gravity="start|center"
+        tools:ignore="UnusedAttribute">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/next"
+        android:layout_width="@dimen/main_inputbox_height"
+        android:layout_height="@dimen/main_inputbox_height"
+        android:padding="@dimen/inputbox_image_padding"
+        android:background="@drawable/item_background"
+        app:srcCompat="@drawable/ic_expand_less_black_24dp"
+        android:contentDescription="@null"/>
+
+</LinearLayout>

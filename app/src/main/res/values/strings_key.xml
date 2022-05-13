@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sp_images">SP_IMAGES</string>
+    <string name="sp_javascript">SP_JAVASCRIPT</string>
+    <string name="sp_search_engine">SP_SEARCH_ENGINE</string>
+    <string name="sp_clear_data_exit">SP_CLEAR_DATA_EXIT</string>
+</resources>
