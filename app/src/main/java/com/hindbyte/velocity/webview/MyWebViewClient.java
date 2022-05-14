@@ -69,7 +69,7 @@ public class MyWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         URLUtils urlUtils = new URLUtils();
-        if (urlUtils.RegexURL.matcher(url).matches()) {
+        if (urlUtils.INTENT_SCHEMA.matcher(url).matches()) {
             try {
                 Intent intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
                 context.startActivity(intent);
