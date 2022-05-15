@@ -24,9 +24,15 @@ android {
         }
     }
     compileOptions {
-        targetCompatibility 11
-        sourceCompatibility 11
+        targetCompatibility JavaVersion.VERSION_1_10
+        sourceCompatibility JavaVersion.VERSION_1_10
     }
+    dependenciesInfo {
+        includeInApk false
+        includeInBundle false
+    }
+    ndkVersion '24.0.8215888'
+    buildToolsVersion '30.0.3'
 }
 
 dependencies {
