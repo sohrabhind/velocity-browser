@@ -1,9 +1,11 @@
 package com.hindbyte.velocity.activity;
 
+import static com.hindbyte.velocity.util.Variables.firstStart;
+
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.SearchManager;
-import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.ClipboardManager;
@@ -14,7 +16,6 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -45,7 +46,6 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
@@ -58,7 +58,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.hindbyte.velocity.R;
-import com.hindbyte.velocity.tabs.TabListManager;
 import com.hindbyte.velocity.fragment.BrowserInterface;
 import com.hindbyte.velocity.fragment.EditTextFragment;
 import com.hindbyte.velocity.fragment.HistoryFragment;
@@ -66,6 +65,7 @@ import com.hindbyte.velocity.home.HomeAdapter;
 import com.hindbyte.velocity.home.HomeData;
 import com.hindbyte.velocity.home.HomeModel;
 import com.hindbyte.velocity.intent.ClearData;
+import com.hindbyte.velocity.tabs.TabListManager;
 import com.hindbyte.velocity.tabs.TabManager;
 import com.hindbyte.velocity.util.AnimatedProgressBar;
 import com.hindbyte.velocity.util.ToastWindow;
@@ -79,8 +79,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import static com.hindbyte.velocity.util.Variables.firstStart;
 
 public class BrowserActivity extends AppCompatActivity implements BrowserInterface {
 
@@ -98,18 +96,18 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
     RecyclerView recyclerView;
     AdView adView;
     AdRequest adRequest;
-    private LinearLayout mainView;
-    private LinearLayout switcherContainer;
-    private LinearLayout findInPagePanel;
-    private EditText findInPageInputBox;
-    private TextView tabMenu;
-    private AnimatedProgressBar progressBar;
-    private Bitmap mDefaultVideoPoster;
-    private FrameLayout contentFrame;
-    private final Handler handler = new Handler(Looper.getMainLooper());
-    private boolean startFindPanel = false;
-    private HomeData homeDB;
-    private TabListManager tabListManager;
+    LinearLayout mainView;
+    LinearLayout switcherContainer;
+    LinearLayout findInPagePanel;
+    EditText findInPageInputBox;
+    TextView tabMenu;
+    AnimatedProgressBar progressBar;
+    Bitmap mDefaultVideoPoster;
+    FrameLayout contentFrame;
+    final Handler handler = new Handler(Looper.getMainLooper());
+    boolean startFindPanel = false;
+    HomeData homeDB;
+    TabListManager tabListManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -121,8 +119,8 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
         contentFrame = findViewById(R.id.main_content);
         switcherScroller = findViewById(R.id.switcher_scroller);
         switcherContainer = findViewById(R.id.switcher_container);
-        mainBox = findViewById(R.id.main_inputbox);
-        inputBox = findViewById(R.id.main_inputbox_input);
+        mainBox = findViewById(R.id.main_input_box);
+        inputBox = findViewById(R.id.main_input_box_input);
         tabMenu = findViewById(R.id.tabMenu);
         progressBar = findViewById(R.id.main_progress_bar);
         addTab = findViewById(R.id.add_tab);
@@ -166,12 +164,16 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
             assert data != null;
             String link = data.toString();
             addTab(link, true);
+        } else if (filePathCallback != null) {
+            filePathCallback = null;
+            getIntent().setAction("");
         }
     }
 
-    @Override
+        @Override
     public void onResume() {
         super.onResume();
+        onNewIntent(getIntent());
         MyWebView myWebView = (MyWebView) currentTabManager;
         myWebView.initPreferences();
     }
@@ -275,6 +277,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
         try {
             PopupWindow pw = new PopupWindow(customMenu, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
             pw.showAsDropDown(inputBox, 0, -inputBox.getHeight());
+
             pw.setOutsideTouchable(true);
             pw.setFocusable(true);
             pw.getContentView().setFocusableInTouchMode(true);
@@ -386,7 +389,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
                 actionMovePage.setVisibility(View.VISIBLE);
                 actionShareUrl.setText("Share page");
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && myWebView.getUrl() != null && !myWebView.getUrl().equals("file:///android_asset/source.html")) {
+                if (myWebView.getUrl() != null && !myWebView.getUrl().equals("file:///android_asset/source.html")) {
                     actionSource.setVisibility(View.VISIBLE);
                     actionSource.setOnClickListener(view -> {
                         pw.dismiss();
@@ -536,7 +539,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
 
     private void initFindInPage() {
         findInPagePanel = findViewById(R.id.layout_findInPage);
-        findInPageInputBox = findViewById(R.id.inputbox_findInPage);
+        findInPageInputBox = findViewById(R.id.input_box_findInPage);
         ImageView findInPre = findViewById(R.id.pre_findInPage);
         ImageView findInPageNext = findViewById(R.id.next_findInPage);
         ImageView findInPageCancel = findViewById(R.id.cancel_findInPage);
@@ -683,6 +686,8 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
         myWebView.loadUrl(url);
     }
 
+
+
     public synchronized void removeTab(TabManager controller) {
         if (currentTabManager == null || tabListManager.getSize() <= 1) {
             contentFrame.removeView((View) controller);
@@ -712,51 +717,41 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
         tabMenu.setText(String.valueOf(tabListManager.getSize()));
     }
 
-    private ValueCallback<Uri> mUploadMessage;
-    public ValueCallback<Uri[]> uploadMessage;
-    public final int REQUEST_SELECT_FILE = 100;
+
+    private ValueCallback<Uri[]> filePathCallback = null;
+    private ValueCallback<Uri[]> mFilePathCallback;
+    public final int INPUT_FILE_REQUEST_CODE = 45738;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        int FILE_CHOOSER_RESULT_CODE = 1;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (requestCode == REQUEST_SELECT_FILE) {
-                if (uploadMessage == null) {
-                    return;
-                }
-                uploadMessage.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, intent));
-                uploadMessage = null;
-            }
-        } else if (requestCode == FILE_CHOOSER_RESULT_CODE) {
-            if (null == mUploadMessage) {
-                return;
-            }
-            Uri result = intent == null || resultCode != BrowserActivity.RESULT_OK ? null : intent.getData();
-            mUploadMessage.onReceiveValue(result);
-            mUploadMessage = null;
-        } else {
-            ToastWindow toastWindow = new ToastWindow();
-            toastWindow.makeText(this, "Failed to Upload File", 2000);
+        if (requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == null) {
+            super.onActivityResult(requestCode, resultCode, intent);
+            return;
         }
+        Uri[] results = null;
+        if (resultCode == Activity.RESULT_OK) {
+            if (intent != null) {
+                String dataString = intent.getDataString();
+                if (dataString != null) results = new Uri[]{Uri.parse(dataString)};
+            }
+        }
+        mFilePathCallback.onReceiveValue(results);
+        mFilePathCallback = null;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void onShowFileChooser(ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-        if (uploadMessage != null) {
-            uploadMessage.onReceiveValue(null);
-            uploadMessage = null;
-        }
-        uploadMessage = filePathCallback;
-        Intent intent = fileChooserParams.createIntent();
-        try {
-            startActivityForResult(intent, REQUEST_SELECT_FILE);
-        } catch (ActivityNotFoundException e) {
-            uploadMessage = null;
-            ToastWindow toastWindow = new ToastWindow();
-            toastWindow.makeText(this, "Cannot Open File Chooser", 2000);
-        }
+    public void showFileChooser(ValueCallback<Uri[]> filePathCallback) {
+        if (mFilePathCallback != null) mFilePathCallback.onReceiveValue(null);
+        mFilePathCallback = filePathCallback;
+        Intent contentSelectionIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        contentSelectionIntent.setType("*/*");
+        Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
+        chooserIntent.putExtra(Intent.EXTRA_INTENT, contentSelectionIntent);
+        //noinspection deprecation
+        startActivityForResult(chooserIntent, INPUT_FILE_REQUEST_CODE);
     }
+
 
     public Bitmap getDefaultVideoPoster() {
         if (mDefaultVideoPoster == null) {
