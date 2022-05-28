@@ -3,6 +3,7 @@ package com.hindbyte.velocity.webview;
 import static android.content.Context.DOWNLOAD_SERVICE;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.webkit.CookieManager;
 import android.webkit.MimeTypeMap;
+import android.webkit.URLUtil;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -42,34 +44,30 @@ public class MyDownloadListener implements android.webkit.DownloadListener {
         builder.create().show();
     }
 
-    public void download(Context context, String url, String contentDisposition, String mimetype) {
-        AppCompatActivity activity = (AppCompatActivity) context;
+    public void download(Context context, String url, String contentDisposition, String mimeType) {
         String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-        if(ActivityCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_GRANTED) {
+        if(ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
             try {
-                url = url.replace(" ", "%20");
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-                request.setMimeType(mimetype);
+                request.setMimeType(mimeType);
                 String cookies = CookieManager.getInstance().getCookie(url);
-                request.addRequestHeader("Cookie", cookies);
-                request.setDescription("Downloading File");
+                request.addRequestHeader("cookie", cookies);
+                request.setDescription("Downloading file...");
+                request.setTitle(guessFileName(url, contentDisposition, mimeType));
                 request.allowScanningByMediaScanner();
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-
-                String filename = guessFileName(url, contentDisposition, mimetype);
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
-                DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
-                if (downloadManager != null) {
-                    downloadManager.enqueue(request);
-                }
-                Toast.makeText(context.getApplicationContext(), "Downloading File", Toast.LENGTH_LONG).show();
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(url, contentDisposition, mimeType));
+                DownloadManager dm = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+                dm.enqueue(request);
+                Toast.makeText(context, "Downloading File", Toast.LENGTH_LONG).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             final int WRITE_EXTERNAL_STORAGE_TASK_CODE = 1;
             String[] permissionsToRequest = new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE };
-            ActivityCompat.requestPermissions(activity, permissionsToRequest, WRITE_EXTERNAL_STORAGE_TASK_CODE);
+            ActivityCompat.requestPermissions((Activity) context, permissionsToRequest, WRITE_EXTERNAL_STORAGE_TASK_CODE);
+            download(context, url, contentDisposition, mimeType);
         }
     }
 
