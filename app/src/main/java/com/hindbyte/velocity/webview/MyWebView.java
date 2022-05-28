@@ -87,18 +87,15 @@ public class MyWebView extends WebView implements TabManager {
         webSettings = getSettings();
         mobileUserAgent = webSettings.getUserAgentString();
         webSettings.setSaveFormData(true);
-        webSettings.setSavePassword(true);
 
-        webSettings.setDatabaseEnabled(false);
-        webSettings.setDomStorageEnabled(false);
+        webSettings.setDatabaseEnabled(true);
+        webSettings.setDomStorageEnabled(true);
 
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setSupportMultipleWindows(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        }
+        webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         webSettings.setAllowContentAccess(true);
         webSettings.setAllowFileAccess(true);
 
