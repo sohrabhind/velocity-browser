@@ -53,14 +53,14 @@ public class EditTextFragment extends Fragment implements SearchAdapter.ItemClic
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View fragmentView = inflater.inflate(R.layout.edit_text_fragment, null);
-        mainInputBox = fragmentView.findViewById(R.id.main_inputbox);
-        inputBox = fragmentView.findViewById(R.id.main_inputbox_input);
+        mainInputBox = fragmentView.findViewById(R.id.main_input_box);
+        inputBox = fragmentView.findViewById(R.id.main_input_box_input);
         searchIcon = fragmentView.findViewById(R.id.search_icon);
         updateInputBox(searchText);
         showSoftInput(inputBox);
         searchAdapter = new SearchAdapter(searchModelList);
         RecyclerView recyclerView = fragmentView.findViewById(R.id.recycler_view);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), 0));
         searchAdapter.setClickListener(this);
