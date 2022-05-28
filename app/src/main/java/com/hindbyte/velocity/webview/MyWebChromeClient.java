@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Message;
 import android.view.View;
 import android.webkit.GeolocationPermissions;
+import android.webkit.PermissionRequest;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -72,11 +73,15 @@ public class MyWebChromeClient extends WebChromeClient {
         return true;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean onShowFileChooser(WebView view, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-        ((BrowserActivity) context).onShowFileChooser(filePathCallback, fileChooserParams);
+        ((BrowserActivity) context).showFileChooser(filePathCallback);
         return true;
+    }
+
+    @Override
+    public void onPermissionRequest(final PermissionRequest request) {
+        request.grant(request.getResources());
     }
 
     @Override
