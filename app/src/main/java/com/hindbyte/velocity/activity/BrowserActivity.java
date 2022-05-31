@@ -2,6 +2,7 @@ package com.hindbyte.velocity.activity;
 
 import static com.hindbyte.velocity.util.Variables.firstStart;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
@@ -13,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -46,8 +48,10 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -395,7 +399,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
                         pw.dismiss();
                         String command = "(document.documentElement.outerHTML)";
                         myWebView.evaluateJavascript("(function() { return " + command + "; })();", html -> {
-                            MyWebView sourceView = new MyWebView(this);
+                            MyWebView sourceView = new MyWebView(this, this);
                             sourceView.loadDataWithBaseURL("file:///android_asset/source.html", decode(html),  "text",null, "file:///android_asset/source.html");
                             addTab(null, true, sourceView);
                         });
@@ -627,7 +631,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
 
     public synchronized void addTab(String url, boolean expand, MyWebView webView) {
         if (url != null) {
-            webView = new MyWebView(this);
+            webView = new MyWebView(this, this);
             webView.loadUrl(url);
         } else if (webView == null) {
             return;
@@ -837,7 +841,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
             }
             builder.show();
         }
-        String mimType = "image/*";
+        String mimeType = "image/*";
         String finalUrl = url;
         listView.setOnItemClickListener((parent, view, position, id) -> {
             String s = list.get(position);
@@ -854,15 +858,37 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
                     setClipboardText(BrowserActivity.this, finalUrl);
                 }
             } else if (s.equals(getString(R.string.main_menu_save))) {
-                MyDownloadListener myDownloadListener = new MyDownloadListener(this);
+                MyDownloadListener myDownloadListener = new MyDownloadListener(this, this);
                 if (result.getExtra() != null) {
-                    myDownloadListener.download(BrowserActivity.this, result.getExtra(), null, mimType);
+                    myDownloadListener.download(result.getExtra(), null, mimeType);
                 } else {
-                    myDownloadListener.download(BrowserActivity.this, finalUrl, null, mimType);
+                    myDownloadListener.download(finalUrl, null, mimeType);
                 }
             }
             builder.dismiss();
         });
+    }
+
+    public String url;
+    public String contentDisposition;
+    public String mimeType;
+
+    public void setStrings(String url, String contentDisposition, String mimeType) {
+        this.url = url;
+        this.contentDisposition = contentDisposition;
+        this.mimeType = mimeType;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 777) {
+            String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+            if (ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
+                MyDownloadListener myDownloadListener = new MyDownloadListener(this, this);
+                myDownloadListener.download(url, contentDisposition, mimeType);
+            }
+        }
     }
 
     public void setClipboardText(Context context, CharSequence txt) {
