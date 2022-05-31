@@ -9,11 +9,11 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
-        android:layout_height="@dimen/main_inputbox_height"
+        android:layout_height="@dimen/main_input_box_height"
         android:layout_weight="1"
-        android:paddingLeft="@dimen/main_inputbox_marginLR"
-        android:paddingRight="@dimen/main_inputbox_marginLR"
-        android:textSize="@dimen/main_inputbox_text_size"
+        android:paddingLeft="@dimen/main_input_box_marginLR"
+        android:paddingRight="@dimen/main_input_box_marginLR"
+        android:textSize="@dimen/main_input_box_text_size"
         android:textColor="@color/textColor"
         android:maxLines="1"
         android:foreground="@drawable/item_background"
@@ -23,9 +23,9 @@
 
     <ImageView
         android:id="@+id/next"
-        android:layout_width="@dimen/main_inputbox_height"
-        android:layout_height="@dimen/main_inputbox_height"
-        android:padding="@dimen/inputbox_image_padding"
+        android:layout_width="@dimen/main_input_box_height"
+        android:layout_height="@dimen/main_input_box_height"
+        android:padding="@dimen/input_box_image_padding"
         android:background="@drawable/item_background"
         app:srcCompat="@drawable/ic_expand_less_black_24dp"
         android:contentDescription="@null"/>
