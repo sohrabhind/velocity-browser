@@ -5,7 +5,6 @@ import static android.content.Context.DOWNLOAD_SERVICE;
 import android.Manifest;
 import android.app.Activity;
 import android.app.DownloadManager;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
@@ -15,10 +14,10 @@ import android.webkit.URLUtil;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.hindbyte.velocity.R;
+import com.hindbyte.velocity.fragment.BrowserInterface;
 
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -26,11 +25,13 @@ import java.util.regex.Pattern;
 
 public class MyDownloadListener implements android.webkit.DownloadListener {
 
-    private final Context context;
+    private final Activity context;
+    BrowserInterface browserInterface;
 
-    public MyDownloadListener(Context context) {
+    public MyDownloadListener(Activity context, BrowserInterface browserInterface) {
         super();
         this.context = context;
+        this.browserInterface = browserInterface;
     }
 
     @Override
@@ -38,13 +39,15 @@ public class MyDownloadListener implements android.webkit.DownloadListener {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         builder.setTitle(R.string.dialog_title_download);
-        builder.setPositiveButton(R.string.dialog_button_positive, (dialog, which) ->
-                download(context, url, contentDisposition, mimeType));
+        builder.setPositiveButton(R.string.dialog_button_positive, (dialog, which) -> {
+            download(url, contentDisposition, mimeType);
+        });
         builder.setNegativeButton(R.string.dialog_button_negative, null);
         builder.create().show();
     }
 
-    public void download(Context context, String url, String contentDisposition, String mimeType) {
+
+    public void download(String url, String contentDisposition, String mimeType) {
         String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
         if(ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
             try {
@@ -64,10 +67,10 @@ public class MyDownloadListener implements android.webkit.DownloadListener {
                 e.printStackTrace();
             }
         } else {
-            final int WRITE_EXTERNAL_STORAGE_TASK_CODE = 1;
+            browserInterface.setStrings(url, contentDisposition, mimeType);
+            final int WRITE_EXTERNAL_STORAGE_TASK_CODE = 777;
             String[] permissionsToRequest = new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE };
-            ActivityCompat.requestPermissions((Activity) context, permissionsToRequest, WRITE_EXTERNAL_STORAGE_TASK_CODE);
-            download(context, url, contentDisposition, mimeType);
+            ActivityCompat.requestPermissions(context, permissionsToRequest, WRITE_EXTERNAL_STORAGE_TASK_CODE);
         }
     }
 
