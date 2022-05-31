@@ -19,16 +19,16 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
-                android:id="@+id/main_inputbox"
+                android:id="@+id/main_input_box"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/main_inputbox_height"
+                android:layout_height="@dimen/main_input_box_height"
                 android:background="@color/color_background">
 
 
                 <com.hindbyte.velocity.util.AnimatedProgressBar
                     android:id="@+id/main_progress_bar"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/prog_bar_height"
+                    android:layout_height="@dimen/progress_bar_height"
                     android:indeterminate="false"
                     android:indeterminateOnly="false"
                     android:progressDrawable="@drawable/progress_bar"
@@ -43,28 +43,28 @@
                     android:baselineAligned="false">
 
                     <TextView
-                        android:id="@+id/main_inputbox_input"
+                        android:id="@+id/main_input_box_input"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="start|center"
                         android:hint="@string/main_omnibox_input_hint"
-                        android:textSize="@dimen/main_inputbox_text_size"
+                        android:textSize="@dimen/main_input_box_text_size"
                         android:textColor="@color/color_edit_text"
                         android:textColorHint="@color/status_bar"
                         android:singleLine="true"
-                        android:paddingLeft="@dimen/main_inputbox_marginLR"
-                        android:paddingRight="@dimen/main_inputbox_marginLR">
+                        android:paddingLeft="@dimen/main_input_box_marginLR"
+                        android:paddingRight="@dimen/main_input_box_marginLR">
                     </TextView>
 
                     <TextView
                         android:id="@+id/tabMenu"
-                        android:layout_width="@dimen/inputbox_image_height"
-                        android:layout_height="@dimen/inputbox_image_height"
+                        android:layout_width="@dimen/input_box_image_height"
+                        android:layout_height="@dimen/input_box_image_height"
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textSize="@dimen/tab_count_text_size"
-                        android:padding="@dimen/inputbox_image_padding"
+                        android:padding="@dimen/input_box_image_padding"
                         android:background="@drawable/ic_tab_icon"
                         android:foreground="@drawable/item_background"
                         tools:ignore="UnusedAttribute">
@@ -72,9 +72,9 @@
 
                     <ImageView
                         android:id="@+id/more"
-                        android:layout_width="@dimen/inputbox_image_height"
-                        android:layout_height="@dimen/inputbox_image_height"
-                        android:padding="@dimen/inputbox_image_padding"
+                        android:layout_width="@dimen/input_box_image_height"
+                        android:layout_height="@dimen/input_box_image_height"
+                        android:padding="@dimen/input_box_image_padding"
                         app:srcCompat="@drawable/ic_menu_white"
                         android:background="@drawable/item_background"
                         android:contentDescription="@null"/>
@@ -86,36 +86,36 @@
             <LinearLayout
                 android:id="@+id/layout_findInPage"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/main_inputbox_height"
+                android:layout_height="@dimen/main_input_box_height"
                 android:background="@color/colorBack"
                 android:visibility="gone"
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/inputbox_findInPage"
+                    android:id="@+id/input_box_findInPage"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:hint="@string/search_hint"
                     android:background="@color/color_background"
                     android:textCursorDrawable="@null"
-                    android:textSize="@dimen/main_inputbox_text_size"
+                    android:textSize="@dimen/main_input_box_text_size"
                     android:textColor="@color/color_edit_text"
                     android:textColorHint="@color/status_bar"
                     android:imeOptions="flagNoExtractUi"
                     android:inputType="text"
                     android:singleLine="true"
-                    android:layout_marginLeft="@dimen/main_inputbox_marginLR"
-                    android:layout_marginRight="@dimen/main_inputbox_marginLR"
+                    android:layout_marginLeft="@dimen/main_input_box_marginLR"
+                    android:layout_marginRight="@dimen/main_input_box_marginLR"
                     android:importantForAutofill="no">
                 </EditText>
 
                 <ImageView
                     android:id="@+id/cancel_findInPage"
                     android:contentDescription="@null"
-                    android:layout_width="@dimen/inputbox_image_height"
-                    android:layout_height="@dimen/inputbox_image_height"
-                    android:padding="@dimen/inputbox_image_padding"
+                    android:layout_width="@dimen/input_box_image_height"
+                    android:layout_height="@dimen/input_box_image_height"
+                    android:padding="@dimen/input_box_image_padding"
                     app:srcCompat="@drawable/ic_cancel_white"
                     android:background="@drawable/item_background">
                 </ImageView>
@@ -123,9 +123,9 @@
                 <ImageView
                     android:id="@+id/pre_findInPage"
                     android:contentDescription="@null"
-                    android:layout_width="@dimen/inputbox_image_height"
-                    android:layout_height="@dimen/inputbox_image_height"
-                    android:padding="@dimen/inputbox_image_padding"
+                    android:layout_width="@dimen/input_box_image_height"
+                    android:layout_height="@dimen/input_box_image_height"
+                    android:padding="@dimen/input_box_image_padding"
                     app:srcCompat="@drawable/ic_up_white"
                     android:background="@drawable/item_background">
                 </ImageView>
@@ -133,9 +133,9 @@
                 <ImageView
                     android:id="@+id/next_findInPage"
                     android:contentDescription="@null"
-                    android:layout_width="@dimen/inputbox_image_height"
-                    android:layout_height="@dimen/inputbox_image_height"
-                    android:padding="@dimen/inputbox_image_padding"
+                    android:layout_width="@dimen/input_box_image_height"
+                    android:layout_height="@dimen/input_box_image_height"
+                    android:padding="@dimen/input_box_image_padding"
                     app:srcCompat="@drawable/ic_down_white"
                     android:background="@drawable/item_background">
                 </ImageView>
@@ -198,7 +198,7 @@
                 android:id="@+id/add_tab"
                 android:text="@string/add_tab"
                 android:layout_width="@dimen/add_tab_width"
-                android:layout_height="@dimen/main_inputbox_height"
+                android:layout_height="@dimen/main_input_box_height"
                 android:layout_margin="@dimen/tab_frame_padding2x"
                 android:paddingStart="@dimen/popup_top_padding"
                 android:paddingEnd="@dimen/popup_top_padding"
