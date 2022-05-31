@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 
 import com.hindbyte.velocity.R;
 import com.hindbyte.velocity.activity.BrowserActivity;
+import com.hindbyte.velocity.fragment.BrowserInterface;
 import com.hindbyte.velocity.tabs.TabLayout;
 import com.hindbyte.velocity.tabs.TabManager;
 import com.hindbyte.velocity.util.URLUtils;
@@ -29,7 +30,7 @@ import java.net.URISyntaxException;
 
 public class MyWebView extends WebView implements TabManager {
 
-    Context context;
+    Activity context;
     final TabLayout tabLayout;
     final MyWebViewClient webViewClient;
     final MyWebChromeClient webChromeClient;
@@ -42,17 +43,19 @@ public class MyWebView extends WebView implements TabManager {
 
     boolean foreground;
     String mobileUserAgent;
+    BrowserInterface browserInterface;
 
-    public MyWebView(Context context) {
+    public MyWebView(Activity context, BrowserInterface browserInterface) {
         super(context);
         this.context = context;
+        this.browserInterface = browserInterface;
         this.foreground = false;
 
         this.tabLayout = new TabLayout(context, this);
         initTab();
         this.webViewClient = new MyWebViewClient(this, context);
-        this.webChromeClient = new MyWebChromeClient(this, context);
-        this.downloadListener = new MyDownloadListener(context);
+        this.webChromeClient = new MyWebChromeClient(this, context, browserInterface);
+        this.downloadListener = new MyDownloadListener(context, browserInterface);
         this.gestureDetector = new GestureDetector(context, new GestureListener(this));
 
         sp = PreferenceManager.getDefaultSharedPreferences(context);
@@ -91,6 +94,8 @@ public class MyWebView extends WebView implements TabManager {
         webSettings.setDatabaseEnabled(true);
         webSettings.setDomStorageEnabled(true);
 
+        webSettings.setAllowFileAccessFromFileURLs(true);
+        webSettings.setAllowUniversalAccessFromFileURLs(true);
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
