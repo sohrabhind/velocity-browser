@@ -29,13 +29,13 @@
 
     <dimen name="dialog_item_text_size">17sp</dimen>
 
-    <dimen name="main_inputbox_height">55dp</dimen>
-    <dimen name="main_inputbox_text_size">16sp</dimen>
-    <dimen name="main_inputbox_marginLR">8dp</dimen>
-    <dimen name="inputbox_image_height">55dp</dimen>
-    <dimen name="inputbox_image_padding">15dp</dimen>
+    <dimen name="main_input_box_height">55dp</dimen>
+    <dimen name="main_input_box_text_size">16sp</dimen>
+    <dimen name="main_input_box_marginLR">8dp</dimen>
+    <dimen name="input_box_image_height">55dp</dimen>
+    <dimen name="input_box_image_padding">15dp</dimen>
     <dimen name="tab_frame_padding2x">10dp</dimen>
-    <dimen name="prog_bar_height">2dp</dimen>
+    <dimen name="progress_bar_height">2dp</dimen>
 
 
 </resources>

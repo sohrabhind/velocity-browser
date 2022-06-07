@@ -78,6 +78,7 @@ public class MyWebChromeClient extends WebChromeClient {
         return true;
     }
 
+    /*
     @Override
     public void onPermissionRequest(final PermissionRequest request) {
         int MY_CAMERA_REQUEST_CODE = 111;
@@ -89,6 +90,7 @@ public class MyWebChromeClient extends WebChromeClient {
             ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.RECORD_AUDIO}, MY_RECORD_AUDIO_REQUEST_CODE);
         }
     }
+    */
 
     @Override
     public boolean onShowFileChooser(WebView view, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
