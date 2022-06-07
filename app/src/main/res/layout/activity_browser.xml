@@ -11,18 +11,69 @@
         android:orientation="horizontal"
         tools:ignore="UselessParent">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/main_view"
-            android:orientation="vertical"
             android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+
+            <FrameLayout
+                android:id="@+id/main_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:background="@color/white"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="@dimen/main_input_box_height">
+            </FrameLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="@dimen/main_input_box_height">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:focusableInTouchMode="true">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvNumbers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/home_top_padding"
+                        android:layout_marginBottom="@dimen/home_top_padding"/>
+
+                    <com.google.android.gms.ads.AdView
+                        xmlns:ads="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/adView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        ads:adUnitId="@string/banner_test_ad"
+                        ads:adSize="LARGE_BANNER"
+                        android:visibility="invisible"
+                        android:layout_marginTop="@dimen/home_top_padding"
+                        android:layout_marginBottom="@dimen/home_top_padding"
+                        android:layout_gravity="center"
+                        android:tag="@string/banner_home_ad">
+                    </com.google.android.gms.ads.AdView>
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+
 
             <RelativeLayout
                 android:id="@+id/main_input_box"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/main_input_box_height"
-                android:background="@color/color_background">
+                android:background="@color/color_background"
+                android:layout_alignParentBottom="true">
 
 
                 <com.hindbyte.velocity.util.AnimatedProgressBar
@@ -34,7 +85,6 @@
                     android:progressDrawable="@drawable/progress_bar"
                     android:layout_alignParentBottom="true"
                     android:importantForAccessibility="yes" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -89,7 +139,8 @@
                 android:layout_height="@dimen/main_input_box_height"
                 android:background="@color/colorBack"
                 android:visibility="gone"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true">
 
                 <EditText
                     android:id="@+id/input_box_findInPage"
@@ -142,79 +193,19 @@
 
             </LinearLayout>
 
-            <FrameLayout
-                android:id="@+id/main_content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                android:background="@color/white">
-            </FrameLayout>
+        </RelativeLayout>
 
-            <androidx.core.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:focusableInTouchMode="true">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvNumbers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/home_top_padding"
-                        android:layout_marginBottom="@dimen/home_top_padding"/>
-
-                    <com.google.android.gms.ads.AdView
-                        xmlns:ads="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/adView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        ads:adUnitId="@string/banner_test_ad"
-                        ads:adSize="LARGE_BANNER"
-                        android:visibility="invisible"
-                        android:layout_marginTop="@dimen/home_top_padding"
-                        android:layout_marginBottom="@dimen/home_top_padding"
-                        android:layout_gravity="center"
-                        android:tag="@string/banner_home_ad">
-                    </com.google.android.gms.ads.AdView>
-
-                </LinearLayout>
-
-            </androidx.core.widget.NestedScrollView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white">
 
-            <Button
-                android:id="@+id/add_tab"
-                android:text="@string/add_tab"
-                android:layout_width="@dimen/add_tab_width"
-                android:layout_height="@dimen/main_input_box_height"
-                android:layout_margin="@dimen/tab_frame_padding2x"
-                android:paddingStart="@dimen/popup_top_padding"
-                android:paddingEnd="@dimen/popup_top_padding"
-                android:textSize="@dimen/menu_button_text_size"
-                android:layout_gravity="end"
-                android:textAllCaps="true"
-                android:background="@color/color_background"
-                android:foreground="@drawable/item_background"
-                tools:ignore="UnusedAttribute">
-            </Button>
-
             <ScrollView
                 android:id="@+id/switcher_scroller"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/tab_frame_padding2x">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tab_frame_padding2x"
+                android:layout_above="@+id/add_tab">
 
                 <LinearLayout
                     android:id="@+id/switcher_container"
@@ -226,7 +217,25 @@
 
             </ScrollView>
 
-        </LinearLayout>
+
+            <Button
+                android:id="@+id/add_tab"
+                android:text="@string/add_tab"
+                android:layout_width="@dimen/add_tab_width"
+                android:layout_height="@dimen/main_input_box_height"
+                android:layout_margin="@dimen/tab_frame_padding2x"
+                android:paddingStart="@dimen/popup_top_padding"
+                android:paddingEnd="@dimen/popup_top_padding"
+                android:textSize="@dimen/menu_button_text_size"
+                android:layout_alignParentEnd="true"
+                android:textAllCaps="true"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_background"
+                android:foreground="@drawable/item_background"
+                tools:ignore="UnusedAttribute">
+            </Button>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

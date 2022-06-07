@@ -100,7 +100,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
     RecyclerView recyclerView;
     AdView adView;
     AdRequest adRequest;
-    LinearLayout mainView;
+    RelativeLayout mainView;
     LinearLayout switcherContainer;
     LinearLayout findInPagePanel;
     EditText findInPageInputBox;
@@ -133,7 +133,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
         recyclerView = findViewById(R.id.rvNumbers);
 
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        pref = getSharedPreferences("myPref", 0);
+        pref = getSharedPreferences("MY_PREF", 0);
         firstStart = false;
         adRequest = new AdRequest.Builder().build();
         inflater = (LayoutInflater) BrowserActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -280,7 +280,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
     public void initiatePopupWindow() {
         try {
             PopupWindow pw = new PopupWindow(customMenu, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
-            pw.showAsDropDown(inputBox, 0, -inputBox.getHeight());
+            pw.showAsDropDown(inputBox, 0, 0);//y = inputBox.getHeight()
 
             pw.setOutsideTouchable(true);
             pw.setFocusable(true);

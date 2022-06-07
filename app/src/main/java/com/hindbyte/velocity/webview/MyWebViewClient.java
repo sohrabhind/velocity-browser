@@ -40,7 +40,7 @@ public class MyWebViewClient extends WebViewClient {
         this.myWebView = myWebView;
         this.context = context;
         this.db = new HistoryData(context);
-        pref = context.getSharedPreferences("myPref", 0);
+        pref = context.getSharedPreferences("MY_PREF", 0);
         assetLoader = new WebViewAssetLoader.Builder()
                 .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(context))
                 .addPathHandler("/res/", new WebViewAssetLoader.ResourcesPathHandler(context))

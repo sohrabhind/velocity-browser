@@ -59,7 +59,7 @@ public class MyWebView extends WebView implements TabManager {
         this.gestureDetector = new GestureDetector(context, new GestureListener(this));
 
         sp = PreferenceManager.getDefaultSharedPreferences(context);
-        pref = context.getSharedPreferences("myPref", 0);
+        pref = context.getSharedPreferences("MY_PREF", 0);
 
         cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
