@@ -8,31 +8,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         tools:ignore="UselessParent">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/main_view"
+            android:orientation="vertical"
             android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <FrameLayout
                 android:id="@+id/main_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:visibility="gone"
-                android:background="@color/white"
-                android:layout_alignParentTop="true"
-                android:layout_marginBottom="@dimen/main_input_box_height">
+                android:background="@color/white">
             </FrameLayout>
 
             <androidx.core.widget.NestedScrollView
+                android:id="@+id/home_shortcuts"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_marginBottom="@dimen/main_input_box_height">
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -41,7 +40,7 @@
                     android:focusableInTouchMode="true">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvNumbers"
+                        android:id="@+id/recyclerView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -67,13 +66,11 @@
             </androidx.core.widget.NestedScrollView>
 
 
-
             <RelativeLayout
                 android:id="@+id/main_input_box"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/main_input_box_height"
-                android:background="@color/color_background"
-                android:layout_alignParentBottom="true">
+                android:background="@color/color_background">
 
 
                 <com.hindbyte.velocity.util.AnimatedProgressBar
@@ -85,6 +82,7 @@
                     android:progressDrawable="@drawable/progress_bar"
                     android:layout_alignParentBottom="true"
                     android:importantForAccessibility="yes" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -139,8 +137,7 @@
                 android:layout_height="@dimen/main_input_box_height"
                 android:background="@color/colorBack"
                 android:visibility="gone"
-                android:orientation="horizontal"
-                android:layout_alignParentBottom="true">
+                android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/input_box_findInPage"
@@ -193,7 +190,8 @@
 
             </LinearLayout>
 
-        </RelativeLayout>
+
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -236,6 +234,7 @@
             </Button>
 
         </RelativeLayout>
+
 
     </LinearLayout>
 
