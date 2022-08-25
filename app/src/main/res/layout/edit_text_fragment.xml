@@ -6,20 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/edittext_main"
-        android:scrollbars="none"/>
-
     <LinearLayout
         android:id="@+id/edittext_main"
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_input_box_height"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:background="@color/color_background">
 
         <AutoCompleteTextView
@@ -52,5 +44,12 @@
         </ImageView>
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittext_main"
+        android:scrollbars="none"/>
 
 </RelativeLayout>

@@ -53,7 +53,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -109,7 +108,6 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
     AnimatedProgressBar progressBar;
     Bitmap mDefaultVideoPoster;
     FrameLayout contentFrame;
-    NestedScrollView homeShortcuts;
     final Handler handler = new Handler(Looper.getMainLooper());
     boolean startFindPanel = false;
     HomeData homeDB;
@@ -123,7 +121,6 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
         });
         mainView = findViewById(R.id.main_view);
         contentFrame = findViewById(R.id.main_content);
-        homeShortcuts = findViewById(R.id.home_shortcuts);
         switcherScroller = findViewById(R.id.switcher_scroller);
         switcherContainer = findViewById(R.id.switcher_container);
         mainBox = findViewById(R.id.main_input_box);
@@ -283,7 +280,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
     public void initiatePopupWindow() {
         try {
             PopupWindow pw = new PopupWindow(customMenu, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
-            pw.showAsDropDown(inputBox, 0, 0);//y = inputBox.getHeight()
+            pw.showAsDropDown(inputBox, 0, -inputBox.getHeight());
 
             pw.setOutsideTouchable(true);
             pw.setFocusable(true);
@@ -369,7 +366,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
                     pw.dismiss();
                     if (myWebView.getUrl() == null) {
                         contentFrame.setVisibility(View.VISIBLE);
-                        homeShortcuts.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
                         //adView.setVisibility(View.GONE);
                     }
                     myWebView.stopLoading();
@@ -605,12 +602,12 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
             URLUtils urlUtils = new URLUtils();
             inputBox.setText(Html.fromHtml(urlUtils.urlWrapper(query)), EditText.BufferType.SPANNABLE);
             contentFrame.setVisibility(View.VISIBLE);
-            homeShortcuts.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
             //adView.setVisibility(View.GONE);
         } else {
             inputBox.setText("");
             contentFrame.setVisibility(View.GONE);
-            homeShortcuts.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
             //adView.setVisibility(View.VISIBLE);
         }
     }

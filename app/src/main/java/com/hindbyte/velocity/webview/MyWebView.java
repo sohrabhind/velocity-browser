@@ -2,15 +2,12 @@ package com.hindbyte.velocity.webview;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.view.ContextMenu;
 import android.view.GestureDetector;
 import android.view.View;
 import android.webkit.CookieManager;
