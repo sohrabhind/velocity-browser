@@ -511,7 +511,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
             }
             String token=escaped.substring(position+2,position+6);
             escaped=escaped.substring(position+6);
-            processed.append((char) Integer.parseInt(token, 16));
+            processed.append((char) Integer.valueOf(token, 16));
             position=escaped.indexOf("\\u");
         }
         processed.append(escaped);

@@ -46,7 +46,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements SharedP
 
         seEntries = getResources().getStringArray(R.array.entries_search_engine);
         searchEngine = findPreference(getString(R.string.sp_search_engine));
-        int num = Integer.parseInt(Objects.requireNonNull(sp.getString(getString(R.string.sp_search_engine), "0")));
+        int num = Integer.valueOf(Objects.requireNonNull(sp.getString(getString(R.string.sp_search_engine), "0")));
         if (0 <= num && num <= 4) {
             summary = seEntries[num];
             searchEngine.setSummary(summary);
@@ -98,7 +98,7 @@ public class SettingFragment extends PreferenceFragmentCompat implements SharedP
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sp, String key) {
         if (key.equals(getString(R.string.sp_search_engine))) {
-            int num = Integer.parseInt(Objects.requireNonNull(sp.getString(key, "0")));
+            int num = Integer.valueOf(Objects.requireNonNull(sp.getString(key, "0")));
             if (0 <= num && num <= 4) {
                 searchEngine.setSummary(seEntries[num]);
             }

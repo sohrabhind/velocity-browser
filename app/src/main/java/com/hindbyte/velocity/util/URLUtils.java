@@ -35,7 +35,7 @@ public class URLUtils {
             return query;
         } else {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-            final int i = Integer.parseInt(Objects.requireNonNull(sp.getString(context.getString(R.string.sp_search_engine), "0")));
+            final int i = Integer.valueOf(Objects.requireNonNull(sp.getString(context.getString(R.string.sp_search_engine), "0")));
             switch (i) {
                 case 1:
                     return "https://www.yandex.com/search/touch/?text=" + query;
