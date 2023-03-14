@@ -1,7 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 33
+    ndkVersion '25.2.9519653'
+    buildToolsVersion '33.0.0'
+
     defaultConfig {
         applicationId "com.hindbyte.velocity"
         minSdkVersion 21
@@ -23,16 +27,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         targetCompatibility JavaVersion.VERSION_11
         sourceCompatibility JavaVersion.VERSION_11
     }
+
     dependenciesInfo {
         includeInApk false
         includeInBundle false
     }
-    ndkVersion '24.0.8215888'
-    buildToolsVersion '33.0.0'
 }
 
 dependencies {
