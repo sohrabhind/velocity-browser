@@ -113,6 +113,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
     HomeData homeDB;
     TabListManager tabListManager;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -503,16 +504,16 @@ public class BrowserActivity extends AppCompatActivity implements BrowserInterfa
 
     public String decode(String escaped) {
         escaped = escaped.replaceAll("^.|.$", "");
-        StringBuilder processed= new StringBuilder();
-        int position=escaped.indexOf("\\u");
-        while(position!=-1) {
-            if(position!=0) {
+        StringBuilder processed = new StringBuilder();
+        int position = escaped.indexOf("\\u");
+        while(position != -1) {
+            if(position != 0) {
                 processed.append(escaped.substring(0, position));
             }
-            String token=escaped.substring(position+2,position+6);
-            escaped=escaped.substring(position+6);
-            processed.append((char) Integer.valueOf(token, 16));
-            position=escaped.indexOf("\\u");
+            String token = escaped.substring(position+2,position+6);
+            escaped = escaped.substring(position+6);
+            processed.append((char) Integer.parseInt(token, 16));
+            position = escaped.indexOf("\\u");
         }
         processed.append(escaped);
         return processed.toString().replace("\\n", "\n").replace("\\\"", "\"");
